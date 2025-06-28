@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Server Checker</title>
+      <link rel="icon" href="./2k.png" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dark-theme">
+    <!-- Theme switch -->
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch">
+            <input type="checkbox" id="themeSwitch" />
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="container">
+        <h1>Minecraft Server Checker</h1>
+
+        <div class="input-group">
+            <input type="text" id="serverInput" placeholder="e.g: hypixel.net" />
+            <button id="sorgulaBtn" onclick="fetchServerData()">Search</button>
+        </div>
+
+        <div id="infoGrid" class="grid hidden">
+            <div class="card"><strong>IP:</strong> <span id="ip"></span></div>
+            <div class="card"><strong>Port:</strong> <span id="port"></span></div>
+            <div class="card"><strong>Status:</strong> <span id="online"></span></div>
+            <div class="card"><strong>Version:</strong> <span id="version"></span></div>
+            <div class="card"><strong>Protocol:</strong> <span id="protocol"></span></div>
+            <div class="card"><strong>Hostname:</strong> <span id="hostname"></span></div>
+            <div class="card"><strong>Software:</strong> <span id="software"></span></div>
+            <div class="card"><strong>EULA Blocked:</strong> <span id="eula"></span></div>
+            <div class="card"><strong>Players:</strong> <span id="players"></span></div>
+            <div class="card motd"><strong>MOTD:</strong> <span id="motd"></span></div>
+            <div class="card icon">
+                <strong>Icon:</strong><br>
+                <img id="icon" src="" alt="Server Icon" />
+            </div>
+            <div class="card">
+                <strong>Player List:</strong>
+                <ul id="playerList"></ul>
+            </div>
+        </div>
+
+        <div id="errorMsg" class="error-msg hidden"></div>
+    </div>
+
+    <footer class="footer">
+        <span>Made with 🧠 by Lightre</span>
+        <img src="./2k.png" alt="logo" class="footer-icon" />
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
