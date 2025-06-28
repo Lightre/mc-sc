@@ -1,4 +1,4 @@
-# 🟢 Minecraft Server Status Checker
+# 🟢 Minecraft Server Checker
 
 A simple and lightweight web application to check the status of any Minecraft server in real time.  
 Just enter the server's IP (optionally port) — get all the essential info instantly.
