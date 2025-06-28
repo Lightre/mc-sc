@@ -51,7 +51,7 @@ async function fetchServerData() {
         document.getElementById("version").innerText = data.version || "Unknown";
         document.getElementById("players").innerText = `${data.players.online} / ${data.players.max}`;
         document.getElementById("motd").innerText = data.motd?.clean?.join("\n") || "None";
-        document.getElementById("icon").src = data.icon || "./unknown_server.png";
+        document.getElementById("icon").src = data.icon || "./assets/unknown_server.png";
 
         // New boxes
         document.getElementById("hostname").innerText = data.hostname || "Unknown";
