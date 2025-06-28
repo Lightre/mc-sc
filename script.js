@@ -17,7 +17,7 @@ async function fetchServerData() {
     playerListEl.innerHTML = "";
 
     if (!address) {
-        errorMsg.textContent = "Lütfen bir sunucu adresi gir.";
+        errorMsg.textContent = "Please enter a server address.";
         errorMsg.classList.remove("hidden");
         grid.classList.add("hidden");
         return;
@@ -28,15 +28,15 @@ async function fetchServerData() {
         const data = await response.json();
 
         if (!data || !data.online) {
-            errorMsg.textContent = "Sunucu çevrimdışı veya bulunamadı.";
+            errorMsg.textContent = "Server is offline or not found.";
             errorMsg.classList.remove("hidden");
             grid.classList.add("hidden");
             return;
         }
 
-        document.getElementById("ip").innerText = data.ip || "Bilinmiyor";
-        document.getElementById("port").innerText = data.port || "Varsayılan";
-        document.getElementById("online").innerText = data.online ? "Çevrimiçi" : "Çevrimdışı";
+        document.getElementById("ip").innerText = data.ip || "Unknown";
+        document.getElementById("port").innerText = data.port || "Default";
+        document.getElementById("online").innerText = data.online ? "Online" : "Offline";
 
         // Class for status
         const onlineSpan = document.getElementById("online");
@@ -48,15 +48,16 @@ async function fetchServerData() {
             onlineSpan.classList.remove("online-status");
         }
 
-        document.getElementById("version").innerText = data.version || "Bilinmiyor";
+        document.getElementById("version").innerText = data.version || "Unknown";
         document.getElementById("players").innerText = `${data.players.online} / ${data.players.max}`;
-        document.getElementById("motd").innerText = data.motd?.clean?.join("\n") || "Yok";
-        document.getElementById("icon").src = data.icon || "";
+        document.getElementById("motd").innerText = data.motd?.clean?.join("\n") || "None";
+        document.getElementById("icon").src = data.icon || "./unknown_server.png";
 
         // New boxes
-        document.getElementById("hostname").innerText = data.hostname || "Bilinmiyor";
-        document.getElementById("software").innerText = data.software || "Bilinmiyor";
-        document.getElementById("protocol").innerText = data.protocol || "Bilinmiyor";
+        document.getElementById("hostname").innerText = data.hostname || "Unknown";
+        document.getElementById("software").innerText = data.software || "Unknown";
+        document.getElementById("protocol").innerText = data.protocol || "Unknown";
+        document.getElementById("eula").innerText = data.eula_blocked || "Unknown";
 
         // Adding player list
         if (data.players?.list && Array.isArray(data.players.list)) {
@@ -81,13 +82,13 @@ async function fetchServerData() {
             });
         } else {
             const li = document.createElement("li");
-            li.textContent = "Oyuncu listesi bulunamadı.";
+            li.textContent = "There are a lot of players or none at all.";
             playerListEl.appendChild(li);
         }
 
         grid.classList.remove("hidden");
     } catch (error) {
-        errorMsg.textContent = "Bilinmeyen bir hata oluştu.";
+        errorMsg.textContent = "An unknown error occurred.";
         errorMsg.classList.remove("hidden");
         grid.classList.add("hidden");
         console.error(error);
